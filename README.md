@@ -1,2 +1,2 @@
 # node_express_crud
-node_crud
+A demo of node crud to show the MVC architecture.
