@@ -26,10 +26,11 @@ companyController.save=function(req,res){
         }
         companyModel.insertCompany(newTask,function(err){
             if(err){
-                res.flash('error','There was error in inserting data');
+                req.flash('error','There was error in inserting data');
         }else{
-            res.flash('success','Data added succesfully');
+            req.flash('success','Data added succesfully');
         }
+        res.redirect('/company');
         });
     }else{
         var err_msg="";
@@ -40,4 +41,46 @@ companyController.save=function(req,res){
          res.render('company/add',{title:'Add Company'});
     }
 }
+companyController.edit=function(req,res){
+    var companyId=req.params.id;
+    companyModel.findCompanyById(companyId,function(result){
+        if(result==null){
+            req.flash('error','Sorry the company doesnot exists!!');
+            res.redirect('/company');
+        }else{
+          res.render('company/edit',{title:'Edit Company',company:result});
+        }
+    })
+}
+
+companyController.update=function(req,res){
+    var companyId=req.params.id;
+    req.assert('name', 'Name is required').notEmpty(); 
+    req.assert('location', 'Location is required').notEmpty()      
+    var errors = req.validationErrors();
+    if( !errors ) {
+        var company={
+            name:req.sanitize('name').escape().trim(),
+            location:req.sanitize('location').escape().trim(),
+        }
+        companyModel.updateCompany(companyId,company,function(result){
+                if(result.affectedRows==1){
+                    req.flash('success', 'Company Information update successfully.');
+                    res.redirect('/company');
+                }else{
+                    req.flash('error', 'There was error in updating company.');
+                    res.redirect('/company/edit/'+companyId);  
+                }
+        });
+    }else{
+        var err_msg="";
+        errors.forEach(function(err){
+            err_msg+=err.msg+"<br/>";
+        })
+         req.flash('error', err_msg);
+         res.redirect('/company/edit/'+companyId);
+    }
+}
+
+
 module.exports=companyController;

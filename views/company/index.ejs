@@ -9,6 +9,7 @@
                         <tr>
                             <th>Name</th>
                             <th>Location</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -20,6 +21,9 @@
                             </td>
                             <td>
                                 <%= company.location %>
+                            </td>
+                            <td>
+                                <a href="/company/edit/<%= company.id %>">Edit</a>
                             </td>
                         </tr>
                         <% }) %>
