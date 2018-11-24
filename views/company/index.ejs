@@ -1,0 +1,35 @@
+<%- include ../layouts/header.ejs %>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"><%= title %><a href="/company/add" class="pull-right">Add Company</a></div>
+            <div class="panel-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Location</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (companies) { %>
+                        <% companies.forEach(function(company){ %>
+                        <tr>
+                            <td>
+                                <%= company.name %>
+                            </td>
+                            <td>
+                                <%= company.location %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%- include ../layouts/footer.ejs %>
