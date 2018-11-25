@@ -1,5 +1,5 @@
 var companyModel= require('../models/companyModel');
-var companyController={}
+var companyController=function(){}
 
 companyController.index=function(req,res,next){
     companyModel.getAllCompany(function(err,companies){
@@ -28,7 +28,7 @@ companyController.save=function(req,res){
             if(err){
                 req.flash('error','There was error in inserting data');
         }else{
-            req.flash('success','Data added succesfully');
+            req.flash('success','Company added succesfully');
         }
         res.redirect('/company');
         });

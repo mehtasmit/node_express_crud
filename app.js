@@ -10,7 +10,8 @@ const flash = require('express-flash');
 const app = express();
 const routes = require('./routes/routes');
 const path = require('path');
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 

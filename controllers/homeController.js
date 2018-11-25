@@ -1,4 +1,4 @@
-var homeController={}
+var homeController=function(){}
 
 homeController.index=function(req,res){
     req.flash('success', 'Welcome to HOm')

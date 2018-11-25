@@ -16,7 +16,7 @@ routes.post('/company/edit/(:id)',controllers.companyController.update);
 
 //employee routes
 routes.get('/employee',controllers.employeeController.index);
-
-
+routes.get('/employee/add',controllers.employeeController.add);
+routes.post('/employee/add',controllers.employeeController.save);
 
 module.exports=routes;

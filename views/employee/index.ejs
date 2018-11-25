@@ -1,0 +1,37 @@
+<%- include ../layouts/header.ejs %>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"><%= title %><a href="/employee/add" class="pull-right">Add Employee</a></div>
+            <div class="panel-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Company</th>
+                            <th>Date of Birth</th>
+                            <th>Date of Joining</th>
+                            <th>Date of Leaving</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <% if (employees) { %>
+                                <% employees.forEach(function(employee){ %>
+                                    <tr>
+                                        <td><%= employee.name %></td>
+                                        <td><%= employee.employee_comp_name %></td>
+                                        <td><%= employee.date_of_birth %></td>
+                                        <td><%= employee.joining_date %></td>
+                                        <td><%= employee.leaving_date %></td>
+                                    </tr>
+                                <% }) %>
+                            <% } %>        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%- include ../layouts/footer.ejs %>
