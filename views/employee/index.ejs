@@ -2,27 +2,32 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="panel panel-default">
-            <div class="panel-heading"><%= title %><a href="/employee/add" class="pull-right">Add Employee</a></div>
+            <div class="panel-heading"><%= title %><a href="/employee/add" class=" pull-right"><i class="fa fa-plus fa-fw"></i>Add New Employee</a></div>
             <div class="panel-body">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
+                            <th></th>    
                             <th>Name</th>
-                            <th>Company</th>
                             <th>Date of Birth</th>
-                            <th>Date of Joining</th>
-                            <th>Date of Leaving</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                             <% if (employees) { %>
                                 <% employees.forEach(function(employee){ %>
                                     <tr>
+                                        <td>
+                                            <% if(employee.pic=="no-user-pic.png"){ %>
+                                               <img src="/images/no-user-image.png" style="height:50px;">     
+                                           <% } %>
+                                        </td>
                                         <td><%= employee.name %></td>
-                                        <td><%= employee.employee_comp_name %></td>
                                         <td><%= employee.date_of_birth %></td>
-                                        <td><%= employee.joining_date %></td>
-                                        <td><%= employee.leaving_date %></td>
+                                        <td>
+                                            <a href="/employee/edit/<%= employee.id %>"><i class="fa fa-edit"></i></a>
+                                            <a href="#" class="view-employee" data-employee-id="<%= employee.id %>"><i class="fa fa-eye"></i></a>
+                                        </td>
                                     </tr>
                                 <% }) %>
                             <% } %>        
@@ -33,5 +38,28 @@
 
     </div>
 </div>
-
+<div id="employee_detail" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+      
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Employee Details</h4>
+            </div>
+            <div class="modal-body">
+                <p><b>Name</b>: <span class="employee-name employee-details"></span></p>
+                <p><b>Email:</b> <span class="employee-email employee-details"></span></p>
+                <p><b>Company :</b> <span class="employee-company employee-details"></span></p>
+                <p><b>DOB:</b><span class="employee-dob employee-details"></span></p>
+                <p><b>DOJ:</b><span class="employee-doj employee-details"></span></p>
+                <p><b>DOL:</b> <span class="employee-dol employee-details"></span></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+      
+        </div>
+      </div>
 <%- include ../layouts/footer.ejs %>

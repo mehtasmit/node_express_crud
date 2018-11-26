@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="panel panel-default">
-            <div class="panel-heading"><%= title %><a href="/company/add" class="pull-right">Add Company</a></div>
+            <div class="panel-heading"><%= title %><a href="/company/add" class= "pull-right"><i class="fa fa-plus fa-fw"></i>Add New Company</a></div>
             <div class="panel-body">
                 <table class="table table-bordered">
                     <thead>
@@ -23,7 +23,7 @@
                                 <%= company.location %>
                             </td>
                             <td>
-                                <a href="/company/edit/<%= company.id %>">Edit</a>
+                                <a href="/company/edit/<%= company.id %>"><i class="fa fa-edit"></i></a>
                             </td>
                         </tr>
                         <% }) %>

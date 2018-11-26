@@ -6,7 +6,7 @@ var companyModel={
 companyModel.getAllCompany=function(result){
     sql.query("SELECT * FROM company",function(err,res){
         if(err) {
-          throw err;
+            return result(err,null);
         }
         else{
          return result(null,res);
@@ -17,7 +17,7 @@ companyModel.insertCompany=function(newCompany,result)
 {
     sql.query("INSERT INTO company SET ?",newCompany,function(err,res){
         if(err){
-            throw err;
+            return result(err,null);
         }else{
             return result(null,res);
         }
@@ -40,7 +40,7 @@ companyModel.findCompanyById=function(companyId,result){
 companyModel.updateCompany=function(companyId,company,result){
     sql.query("UPDATE company SET  ? WHERE id="+companyId,company,function(err,rows){
         if(err)
-            throw err;
+            result(err); 
        
         return result(rows);
 
