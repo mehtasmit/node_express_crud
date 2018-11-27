@@ -1,6 +1,7 @@
 var employeeModel = require('../models/employeeModel');
 var conpanyModel = require('../models/companyModel');
 const dateFormat = require('dateformat');
+
 var employeeController = function () {
 
 
@@ -73,5 +74,18 @@ employeeController.employeeDetail = function (req, res) {
         }
         res.send(JSON.stringify(response));
     })
+}
+employeeController.edit=function(req,res){
+    var employee_id=req.params.employee_id;
+   employeeModel.getEmployeeById(employee_id,function(result){
+    if(result==null){
+        req.flash('error','Sorry the employee doesnot exists!!');
+        res.redirect('/employee');
+    }else{
+        conpanyModel.getAllCompany(function(err,companies){
+            res.render('employee/edit',{title: 'Edit Employee',companies:companies,employee:result[0]});
+        });
+    }
+   });
 }
 module.exports = employeeController;

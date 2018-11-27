@@ -23,7 +23,7 @@
                                            <% } %>
                                         </td>
                                         <td><%= employee.name %></td>
-                                        <td><%= employee.date_of_birth %></td>
+                                        <td><%= moment(employee.date_of_birth).format(shortDateFormat) %></td>
                                         <td>
                                             <a href="/employee/edit/<%= employee.id %>"><i class="fa fa-edit"></i></a>
                                             <a href="#" class="view-employee" data-employee-id="<%= employee.id %>"><i class="fa fa-eye"></i></a>

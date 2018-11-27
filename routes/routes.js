@@ -19,4 +19,5 @@ routes.get('/employee',controllers.employeeController.index);
 routes.get('/employee/add',controllers.employeeController.add);
 routes.post('/employee/add',controllers.employeeController.save);
 routes.post('/employee/view',controllers.employeeController.employeeDetail);
+routes.get('/employee/edit/(:employee_id)',controllers.employeeController.edit);
 module.exports=routes;

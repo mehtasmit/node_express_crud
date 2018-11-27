@@ -1,0 +1,66 @@
+<%- include ../layouts/header.ejs %>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"><%= title %></div>
+            <div class="panel-body">
+                <form class="form-horizontal" action="/employee/add" method="POST">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name">Name</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name" value="<%= employee.name %>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="email" >Email</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" name="email" id="email" value="<%= employee.email %>" placeholder="Enter Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="location">Company</label>
+                        <div class="col-sm-10">
+                          <select class="form-control" name="company" id="company">
+                                <option value="">Select Company</option>
+                            <% if (companies) { %>
+                                <% companies.forEach(function(company){ %>
+                                    <option value="<%= company.id %>"  selected="<%= (company.id==employee.company_id) ? "selected" : "" %>"><%= company.name %> (<%= company.location %>) </option>
+                                <% }) %>
+                            <% } %>         
+                            
+                          </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="date_of_birth">Date of Birth</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control datepicker" name="date_of_birth" id="date_of_birth" value="<%= moment(employee.date_of_birth).format(shortDateFormat) %>" placeholder="Date of Birth">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="joining_date">Joining Date</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control datepicker" name="joining_date" id="joining_date" value="<%= moment(employee.joining_date).format(shortDateFormat) %>" placeholder="Joining Date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="leaving_date">Leaving Date</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control datepicker" name="leaving_date" id="leaving_date" value="<%= (employee.leaving_date!=null) ? moment(employee.leaving_date).format(shortDateFormat) : ""; %>" placeholder="Leaving Date">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group"> 
+                      <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="/employee"><button type="button" class="btn btn-default">Cancel</button></a>
+                      </div>
+                    </div>
+                  </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%- include ../layouts/footer.ejs %>
